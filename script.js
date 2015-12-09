@@ -6,13 +6,14 @@ $(document).ready(function() {
             "?client_id=" + client_id +
             "&client_secret=" + client_secret +
             "&v=20151209" +
-            "&ll=40.7,-74" +
-            "&query=" + $("#search").val(),
+            "&near=" + $("#address").val() +
+            "&query=pizza",
             function(data) {
+                console.log(data)
                 $("#results").html("");
                 var venues = data["response"]["venues"]
                 for (var i = 0; i < venues.length; i++) {
-                    $("#results").append("<div>" + venues[i]["name"] + ": " + venues[i]["contact"]["formattedPhone"] + "</div>");
+                    $("#results").append("<li>" + venues[i]["name"] + ": " + venues[i]["contact"]["formattedPhone"] + "</li>");
                 }
             });
     });
